@@ -1,38 +1,51 @@
-export type GiftId = 'letters' | 'memories' | 'reasons' | 'quiz' | 'scratch' | 'promise'
+export type GiftId = 'letters' | 'memories' | 'reasons' | 'quiz' | 'scratch' | 'promise' | 'unsent' | 'puzzle' | 'who' | 'code' | 'imagine' | 'match' | 'story' | 'questions' | 'treasure' | 'timeline' | 'stars'
 export type Choice = { label: string; reply: string }
 export type LoveStoryConfig = {
   names: { sender: string; recipient: string }
   musicSrc?: string
   quizAnswersEmail: string
-  letters: { id: string; title: string; emoji: string; body: string }[]
+  letters: { id: string; title: string; emoji: string; body: string; greeting?: string }[]
   reasons: string[]
   memories: { id: string; title: string; caption: string; date?: string; src?: string; thumbnailSrc?: string; alt: string }[]
   quiz: { id: string; question: string; choices: Choice[] }[]
+  timeline: { id: string; title: string; text: string; emoji: string; date?: string; memoryId?: string; photo?: { src: string; thumbnailSrc?: string; alt: string } }[]
+  constellation: { stars: { x: number; y: number; line: string }[]; finale: string }
   promise: string
   finalLetter: string
 }
 
 export const giftMeta: { id: GiftId; title: string; hint: string; emoji: string }[] = [
-  { id: 'letters', title: 'افتحي لما…', hint: 'كلام صغير لأيام مختلفة', emoji: '✉️' },
-  { id: 'memories', title: 'ألبوم حكايتنا', hint: 'لحظاتنا الحلوة مستنية صورها', emoji: '📷' },
-  { id: 'reasons', title: 'بحبك ليه؟', hint: 'سبب صغير ورا سبب', emoji: '💗' },
+  { id: 'letters', title: 'افتحي لما…', hint: 'رسالة مستنياكي لكل إحساس', emoji: '✉️' },
+  { id: 'memories', title: 'ألبوم حكايتنا', hint: 'لحظات اتحفرت في القلب', emoji: '📷' },
+  { id: 'reasons', title: 'بحبك ليه؟', hint: 'سبب ورا سبب… ومفيش آخر', emoji: '💗' },
   { id: 'quiz', title: 'تعرفيني قد إيه؟', hint: 'لعبة صغيرة من غير درجات', emoji: '🎠' },
-  { id: 'scratch', title: 'مفاجأة مستخبية', hint: 'حاجة هتكتشفيها بإيدك', emoji: '✨' },
-  { id: 'promise', title: 'وعدنا لبعض', hint: 'كلام من قلبي عن اللي بينا', emoji: '🤝' },
+  { id: 'scratch', title: 'مفاجأة مستخبية', hint: 'سر صغير تحت طبقة دهب', emoji: '✨' },
+  { id: 'promise', title: 'وعدنا لبعض', hint: 'وعد مكتوب بقلبي', emoji: '🤝' },
+  { id: 'unsent', title: 'رسايل ما بعتهاش', hint: 'كلام فضل جوا قلبي لحد النهارده', emoji: '💌' },
+  { id: 'puzzle', title: 'لمّي كلام قلبي', hint: 'رتبي الكلمات عشان تكتمل الرسالة', emoji: '🧩' },
+  { id: 'who', title: 'مين فينا؟', hint: 'اختاري إجابتك وشوفي أنا اخترت إيه', emoji: '🤭' },
+  { id: 'code', title: 'شفرة بينا', hint: 'حلي ٣ ألغاز وافتحي الرسالة', emoji: '🔐' },
+  { id: 'imagine', title: 'لو كنا…', hint: 'اختيارات صغيرة لحكايتنا الكبيرة', emoji: '💭' },
+  { id: 'match', title: 'قلوب وذكريات', hint: 'طابقي الرموز واكتشفي الرسائل', emoji: '🃏' },
+  { id: 'story', title: 'حكاية قبل النوم', hint: 'اختاري طريق حكايتنا', emoji: '🌙' },
+  { id: 'questions', title: 'سؤال مني وإجابة مني', hint: 'جاوبي وبعدين افتحي إجابتي', emoji: '🫶' },
+  { id: 'treasure', title: 'رحلة لجوا قلبي', hint: 'اتبعي الخريطة واجمعي أجزاء الرسالة', emoji: '🗺️' },
+  { id: 'timeline', title: 'حكايتنا خطوة بخطوة', hint: 'من أول كلمة… لحد اللي جاي', emoji: '🕰️' },
+  { id: 'stars', title: 'سما بتاعتنا', hint: 'وصّلي النجوم وشوفي هتبقى إيه', emoji: '🌌' },
 ]
 
 export const story: LoveStoryConfig = {
-  names: { sender: 'حبيبك', recipient: 'حبيبتي' },
+  names: { sender: 'محمد', recipient: 'نانسي' },
   // ضيفي ملفك إلى public/assets/music/ واكتبي المسار هنا. سيظهر زر المزيكا تلقائياً.
   musicSrc: undefined,
   quizAnswersEmail: 'm.adeldev10@gmail.com',
   letters: [
-    { id: 'miss', title: 'لما توحشيني 🥹', emoji: '🥹', body: 'لو وحشتيني، حبيت أسيبلك الرسالة دي. كلامنا في نص اليوم بيبقى من الحاجات اللي بتفرّحني، حتى لو بنتكلم في حاجة عادية جدًا. حبيت أفكرك إني بفكر فيكي، ومستني أكلمك تاني. ❤️' },
-    { id: 'sad', title: 'لما تكوني زعلانة 🤍', emoji: '🤍', body: 'عارف إن في أيام بتبقى تقيلة. مش هقولك ماتزعليش؛ بس حبيت أفكرك إني موجود أسمعك وقت ما تحبي. ولو مش حابة تتكلمي دلوقتي، خدي وقتك. بحبك في كل الأحوال.' },
-    { id: 'hard-day', title: 'بعد يوم طويل 🌙', emoji: '🌙', body: 'أتمنى يومك يكون خلص على خير. لو كان متعب، ماتنسيش إنك عملتي اللي تقدري عليه. ارتاحي شوية، وبكرة يبقى يوم أهدى إن شاء الله. وأنا مستني أسمع منك.' },
-    { id: 'smile', title: 'لما تحبي تبتسمي 😊', emoji: '😊', body: 'رسالة سريعة عشان أفكرك تبتسمي. بحب ضحكتك جدًا، وبحب خفة دمك حتى لما النكتة ما تبقاش مضحكة 😄 لو ابتسمتي دلوقتي يبقى أنا كده عملت اللي عليا.' },
-    { id: 'beautiful-fate', title: 'لما تفتكري إنك نصيبي الحلو 🍀', emoji: '🍀', body: 'كل ما أفكر إنك بقيتي جزء من حياتي، بحس إني محظوظ. إنتي من أجمل الحاجات اللي حصلتلي، وربنا يديمك نعمة في حياتي ❤️' },
-    { id: 'best-destiny', title: 'لما أفتكر أجمل أقداري ✨', emoji: '✨', body: 'من أجمل أقداري إني عرفتك، ومن أحلى الحاجات اللي مستنيها إننا نكمّل حكايتنا سوا. ربنا يكتب لنا الخير والفرحة دايمًا.' },
+    { id: 'miss', greeting: 'يا نانوسة، يا اللي وحشتيني،', title: 'لما توحشيني 🥹', emoji: '🥹', body: 'لو وحشتيني، حبيت أسيبلك الرسالة دي. كلامنا في نص اليوم بيبقى من الحاجات اللي بتفرّحني، حتى لو بنتكلم في حاجة عادية جدًا. حبيت أفكرك إني بفكر فيكي، ومستني أكلمك تاني. ❤️' },
+    { id: 'sad', greeting: 'تعالي هنا يا قلبي،', title: 'لما تكوني زعلانة 🤍', emoji: '🤍', body: 'عارف إن في أيام بتبقى تقيلة. مش هقولك ماتزعليش؛ بس حبيت أفكرك إني موجود أسمعك وقت ما تحبي. ولو مش حابة تتكلمي دلوقتي، خدي وقتك. بحبك في كل الأحوال.' },
+    { id: 'hard-day', greeting: 'حمد الله ع السلامة يا حبيبتي،', title: 'بعد يوم طويل 🌙', emoji: '🌙', body: 'أتمنى يومك يكون خلص على خير. لو كان متعب، ماتنسيش إنك عملتي اللي تقدري عليه. ارتاحي شوية، وبكرة يبقى يوم أهدى إن شاء الله. وأنا مستني أسمع منك.' },
+    { id: 'smile', greeting: 'بصي هنا يا ننس،', title: 'لما تحبي تبتسمي 😊', emoji: '😊', body: 'رسالة سريعة عشان أفكرك تبتسمي. بحب ضحكتك جدًا، وبحب خفة دمك حتى لما النكتة ما تبقاش مضحكة 😄 لو ابتسمتي دلوقتي يبقى أنا كده عملت اللي عليا.' },
+    { id: 'beautiful-fate', greeting: 'يا نانسي، يا نصيبي الحلو،', title: 'لما تفتكري إنك نصيبي الحلو 🍀', emoji: '🍀', body: 'كل ما أفكر إنك بقيتي جزء من حياتي، بحس إني محظوظ. إنتي من أجمل الحاجات اللي حصلتلي، وربنا يديمك نعمة في حياتي ❤️' },
+    { id: 'best-destiny', greeting: 'يا أجمل أقداري،', title: 'لما أفتكر أجمل أقداري ✨', emoji: '✨', body: 'من أجمل أقداري إني عرفتك، ومن أحلى الحاجات اللي مستنيها إننا نكمّل حكايتنا سوا. ربنا يكتب لنا الخير والفرحة دايمًا.' },
   ],
   reasons: [
     'بحب الكلام معاكي، حتى لو مفيش موضوع مهم.',
@@ -49,11 +62,11 @@ export const story: LoveStoryConfig = {
     'كل ما أتكلم معاكي أفتكر إني محظوظ بيكي ❤️',
   ],
   memories: [
-    { id: 'fatiha', title: 'قراية الفاتحة', caption: 'بداية جميلة اتجمعت فيها قلوبنا وعيلتنا على الخير.', src: '/assets/photos/fatiha.jpg', thumbnailSrc: '/assets/photos/fatiha-thumb.jpg', alt: 'صورة من قراية الفاتحة' },
-    { id: 'shabka', title: 'الشبكة', caption: 'تفصيلة من يوم مميز، هنفضل نفتكرها بفرحة.', src: '/assets/photos/shabka.jpg', thumbnailSrc: '/assets/photos/shabka-thumb.jpg', alt: 'صورة يوم اختيار الشبكة' },
-    { id: 'engagement', title: 'يوم خطوبتنا', caption: 'كل ما أشوف الصورة دي أفتكر فرحتنا في اليوم ده.', src: '/assets/photos/engagement.jpg', thumbnailSrc: '/assets/photos/engagement-thumb.jpg', alt: 'صورة من يوم الخطوبة' },
+    { id: 'fatiha', date: '٢٩ أغسطس ٢٠٢٦', title: 'قراية الفاتحة', caption: 'بداية جميلة اتجمعت فيها قلوبنا وعيلتنا على الخير.', src: '/assets/photos/fatiha.jpg', thumbnailSrc: '/assets/photos/fatiha-thumb.jpg', alt: 'صورة من قراية الفاتحة' },
+    { id: 'shabka', date: '٢ سبتمبر ٢٠٢٦', title: 'الشبكة', caption: 'تفصيلة من يوم مميز، هنفضل نفتكرها بفرحة.', src: '/assets/photos/shabka.jpg', thumbnailSrc: '/assets/photos/shabka-thumb.jpg', alt: 'صورة يوم اختيار الشبكة' },
+    { id: 'engagement', date: '٢٥ سبتمبر ٢٠٢٦', title: 'يوم خطوبتنا', caption: 'كل ما أشوف الصورة دي أفتكر فرحتنا في اليوم ده.', src: '/assets/photos/engagement.jpg', thumbnailSrc: '/assets/photos/engagement-thumb.jpg', alt: 'صورة من يوم الخطوبة' },
     { id: 'favorite-photo', title: 'صورة بحبها لينا', caption: 'أي صورة بتحبيها لينا، حتى لو كانت لقطة عادية.', src: '/assets/photos/favorite.jpg', thumbnailSrc: '/assets/photos/favorite-thumb.jpg', alt: 'صورة مفضلة لكما' },
-    { id: 'next-memory', title: 'الذكرى اللي جاية', caption: 'نسيب مكانها لصورة من يوم حلو لسه مستنينا.', alt: 'مكان مخصص لذكرى مستقبلية لكما' },
+    { id: 'next-memory', title: 'الذكرى اللي جاية', caption: 'مكان مستني صورة من يوم فرحنا إن شاء الله… وإحنا بنضحك من قلبنا.', alt: 'مكان مخصص لذكرى مستقبلية لكما' },
   ],
   quiz: [
     { id: 'favorite-thing', question: 'إيه أكتر حاجة بحبها في اللي بينا؟', choices: [
@@ -87,6 +100,31 @@ export const story: LoveStoryConfig = {
       { label: 'إنك بقيتي أجمل نصيب في حياتي', reply: 'دي حقيقة بفتكرها كل يوم ❤️' }, { label: 'إن قدامنا حياة نبنيها سوا', reply: 'وأنا مستعد أتعب عشانها وعشانك.' }, { label: 'فرحة أهلنا بينا', reply: 'ربنا يديم الفرحة ويكتب لنا الخير.' },
     ] },
   ],
+  timeline: [
+    { id: 'the-call', emoji: '📞', date: 'السبت ٨ أغسطس ٢٠٢٦', title: 'المكالمة اللي بدأت كل حاجة', text: 'اليوم اللي اتصلت فيه بعمو حسام عشان أطلب إيدك… قلبي كان بيدق، بس كنت متأكد إني بعمل أصح خطوة في حياتي.' },
+    { id: 'first-sight', emoji: '🚪', date: 'الجمعة ١٤ أغسطس ٢٠٢٦', title: 'أول مرة أشوفك', text: 'أول مرة أدخل بيتكم من بابه وأقعد مع العيلة… وأول مرة عيني تيجي في عينك. من اللحظة دي عرفت إن الحكاية دي مش زي أي حكاية.' },
+    { id: 'acceptance', emoji: '🤝', date: 'التلات ١٨ أغسطس ٢٠٢٦', title: 'القبول', text: 'اتفقنا، وجه القبول النهائي، وبقت كل حاجة بيني وبين العيلة تمام… يوم قلبي ارتاح فيه وفرح فرحة ما تتوصفش.' },
+    { id: 'fatiha', emoji: '🤲', date: 'السبت ٢٩ أغسطس ٢٠٢٦', title: 'قراية الفاتحة', text: 'اليوم اللي عيلتنا اتجمعت فيه على الخير، وبقى لحكايتنا أول سطر رسمي.', memoryId: 'fatiha' },
+    { id: 'shabka', emoji: '💍', date: 'الأربع ٢ سبتمبر ٢٠٢٦', title: 'الشبكة', text: 'حاجة صغيرة في إيدك… شايلة وعد كبير مني ليكي.', memoryId: 'shabka' },
+    { id: 'first-love', emoji: '❤️', date: 'الاتنين ١٤ سبتمبر ٢٠٢٦', title: 'أول «بحبك»', text: 'أول مرة قلتلك فيها «بحبك»… كلمة صغيرة كنت شايلها في قلبي من بدري، ولما طلعت حسيت إنها أخيرًا وصلت لمكانها الصح.' },
+    { id: 'engagement', emoji: '💐', date: 'الجمعة ٢٥ سبتمبر ٢٠٢٦', title: 'يوم خطوبتنا', text: 'كان في ناس كتير حوالينا، بس أنا ما كنتش شايف غير ضحكتك.', memoryId: 'engagement' },
+    { id: 'first-tea', emoji: '☕', date: 'الجمعة ٢ أكتوبر ٢٠٢٦', title: 'شاي وبلكونة وأكل من إيدك', text: 'بعد الخطوبة بأسبوع بالظبط، أول مرة أجيلكم البيت وأقعد معاكي… شربنا الشاي سوا، وأكلت من إيدك الحلوة، وقعدنا في البلكونة نحكي ومش حاسين بالوقت. يوم بسيط، بس حسيت فيه إني بقيت واحد من البيت، وإن ضحكتك دي أحلى ترحيب في الدنيا.', photo: { src: '/assets/photos/first-tea.jpg', thumbnailSrc: '/assets/photos/first-tea-thumb.jpg', alt: 'صورة سيلفي لينا في أول زيارة للبيت بعد الخطوبة' } },
+    { id: 'next', emoji: '🏡', title: 'اللي جاي أحلى', text: 'بيت صغير مليان ضحك، وإيدك في إيدي… ولسه الحكاية في أولها.' },
+  ],
+  // النجوم مرسومة على شكل قلب (x و y من 0 لـ 100). رتّبيها بنفس ترتيب الضغط.
+  constellation: {
+    stars: [
+      { x: 50, y: 86, line: 'دي أول نجمة… زي أول مرة اتكلمنا.' },
+      { x: 22, y: 61, line: 'ودي ضحكتك اللي بتنوّر يومي.' },
+      { x: 11, y: 36, line: 'ودي كل مرة طمنتيني من غير ما أطلب.' },
+      { x: 28, y: 17, line: 'ودي أحلامنا اللي بنحكيها لبعض بالليل.' },
+      { x: 50, y: 31, line: 'ودي اللحظة اللي عرفت فيها إنك نصيبي.' },
+      { x: 72, y: 17, line: 'ودي دعواتنا لبعض في السر.' },
+      { x: 89, y: 36, line: 'ودي الأيام الحلوة اللي لسه مستنيانا.' },
+      { x: 78, y: 61, line: 'وآخر نجمة… إنتي يا نانسي، أنور حاجة في سمايا.' },
+    ],
+    finale: 'كل نجمة كانت حتة من حكايتنا… ولما اتجمعوا بقوا قلب. والقلب ده كله ليكي ❤️',
+  },
   promise: `نوعد بعض إننا ما نخبيش حاجة عن بعض، ونفضل دايمًا قلوبنا على بعض وناخد بالنا من بعض. ولو حصل زعل أو سوء فهم، نتكلم ونصالح بعض بدري، وما نديش فرصة للشيطان يدخل بينا.\n\nوأوعدك إني هحفر في الصخر عشانك وعشاننا، وهعمل كل اللي أقدر عليه علشان أفضل جنبك. عمري ما هسيبك ولا هفكر أتخلى عنك ❤️`,
   finalLetter: `إنتي أجمل أقداري وأحلى نصيب، وبحبك جدًا. عمري ما أقصد أزعلك، ولو حصل بينا زعل نوعد بعض نتكلم ونصالح بعض بدري، من غير ما نسيب الزعل يكبر ❤️`,
 }
