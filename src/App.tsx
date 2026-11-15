@@ -8,7 +8,9 @@ import { BranchingStory, CloserQuestions, Constellation, ImagineGame, MemoryMatc
 import { HeartBurst, PetalShower, RevealText, Sky, revealDuration } from './effects'
 
 type Progress = { version: 1; entered: boolean; gifts: string[]; letters: string[]; reason: number; answers: Record<string, number[]>; scratched: boolean; finalOpened: boolean }
-const defaultProgress: Progress = { version: 1, entered: false, gifts: [], letters: [], reason: 0, answers: {}, scratched: false, finalOpened: false }
+// The original chapters she already opened before the update; they always show as opened.
+const alreadyOpened: GiftId[] = ['letters', 'memories', 'reasons', 'quiz', 'scratch', 'promise']
+const defaultProgress: Progress = { version: 1, entered: false, gifts: [...alreadyOpened], letters: [], reason: 0, answers: {}, scratched: false, finalOpened: false }
 function readProgress(): Progress {
   try {
     const raw = localStorage.getItem('love-story:progress:v1')
@@ -21,7 +23,7 @@ function readProgress(): Progress {
       const choices = Array.isArray(selected) ? selected : typeof selected === 'number' ? [selected] : []
       return [[id, [...new Set(choices.filter((choice): choice is number => Number.isInteger(choice) && choice >= 0 && choice < question.choices.length))]]]
     }))
-    return { ...defaultProgress, entered: Boolean(value.entered), gifts: Array.isArray(value.gifts) ? value.gifts.filter(id => giftMeta.some(g => g.id === id)) : [], letters: Array.isArray(value.letters) ? value.letters.filter(id => story.letters.some(l => l.id === id)) : [], reason: Number.isInteger(value.reason) && value.reason! >= 0 && value.reason! < story.reasons.length ? value.reason! : 0, answers, scratched: Boolean(value.scratched), finalOpened: Boolean(value.finalOpened) }
+    return { ...defaultProgress, entered: Boolean(value.entered), gifts: [...new Set([...alreadyOpened, ...(Array.isArray(value.gifts) ? value.gifts.filter(id => giftMeta.some(g => g.id === id)) : [])])], letters: Array.isArray(value.letters) ? value.letters.filter(id => story.letters.some(l => l.id === id)) : [], reason: Number.isInteger(value.reason) && value.reason! >= 0 && value.reason! < story.reasons.length ? value.reason! : 0, answers, scratched: Boolean(value.scratched), finalOpened: Boolean(value.finalOpened) }
   } catch { return defaultProgress }
 }
 type ProgressContextValue = { progress: Progress; update: (change: Partial<Progress>) => void; markGift: (id: GiftId) => void; reset: () => void }
