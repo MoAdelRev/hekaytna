@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, ArrowUpLeft, Check, ChevronLeft, ChevronRight, G
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import type { PointerEvent as ReactPointerEvent } from 'react'
 import { giftMeta, story, type GiftId } from './content'
-import { BranchingStory, CloserQuestions, Constellation, ImagineGame, OurTimeline, SecretCode, TreasureMap, UnsentLetters, WhoGame, WordPuzzle } from './NewChapters'
+import { CloserQuestions, Constellation, ImagineGame, OurTimeline, TreasureMap, UnsentLetters, WhoGame } from './NewChapters'
 import { HeartBurst, PetalShower, RevealText, Sky, revealDuration } from './effects'
 
 type Progress = { version: 1; entered: boolean; gifts: string[]; letters: string[]; reason: number; answers: Record<string, number[]>; scratched: boolean; finalOpened: boolean }
@@ -216,11 +216,8 @@ function GiftRoute() {
     case 'scratch': return <ScratchCard />
     case 'promise': return <PromiseChapter />
     case 'unsent': return <Chapter id="unsent" title="رسايل ما بعتهاش" subtitle="كلام فضل جوا قلبي… ودلوقتي بقى بتاعك." icon={<span>💌</span>}><UnsentLetters /></Chapter>
-    case 'puzzle': return <Chapter id="puzzle" title="لمّي كلام قلبي" subtitle="الكلمات اتلخبطت من كتر الحب… رتبيها." icon={<span>🧩</span>}><WordPuzzle /></Chapter>
     case 'who': return <Chapter id="who" title="مين فينا؟" subtitle="اختاري إجابتك وشوفي أنا كنت هختار مين." icon={<span>🤭</span>}><WhoGame /></Chapter>
-    case 'code': return <Chapter id="code" title="شفرة بينا" subtitle="حلي الألغاز وافتحي الرسالة السرية." icon={<span>🔐</span>}><SecretCode /></Chapter>
     case 'imagine': return <Chapter id="imagine" title="لو كنا…" subtitle="اختيارات صغيرة لحكايتنا الكبيرة." icon={<span>💭</span>}><ImagineGame /></Chapter>
-    case 'story': return <Chapter id="story" title="حكاية قبل النوم" subtitle="اختاري طريق حكايتنا، وكل اختيار له نهاية حلوة." icon={<span>🌙</span>}><BranchingStory /></Chapter>
     case 'questions': return <Chapter id="questions" title="سؤال مني وإجابة مني" subtitle="جاوبي براحتك، وبعدها افتحي إجابتي." icon={<span>🫶</span>}><CloserQuestions /></Chapter>
     case 'stars': return <Chapter id="stars" title="سما بتاعتنا" subtitle="كل نجمة ذكرى… ولما يتوصلوا، يبان سرّهم." icon={<span>🌌</span>}><Constellation /></Chapter>
     case 'treasure': return <Chapter id="treasure" title="رحلة لجوا قلبي" subtitle="اتبعي المحطات واجمعي أجزاء الرسالة." icon={<span>🗺️</span>}><TreasureMap /></Chapter>
