@@ -51,12 +51,12 @@ export function HeartBurst({ count = 9 }: { count?: number }) {
 }
 
 /** Reveals text sentence by sentence, like it is being written. Paragraphs are split on blank lines. */
-export function RevealText({ text, className, start = 0.25, step = 0.45 }: { text: string; className?: string; start?: number; step?: number }) {
+export function RevealText({ text, className, start = 0.25, step = 0.45, play = true }: { text: string; className?: string; start?: number; step?: number; play?: boolean }) {
   let index = 0
   return <p className={className}>{text.split(/\n\s*\n/).map((paragraph, p) =>
     <span className="reveal-para" key={p}>{(paragraph.match(/[^.!؟]+[.!؟]*\s*/g) ?? [paragraph]).map(sentence => {
       const delay = start + step * index++
-      return <motion.span key={delay} className="reveal-line" initial={{ opacity: 0, y: 8, filter: 'blur(4px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} transition={{ delay, duration: 0.7 }}>{sentence}</motion.span>
+      return <motion.span key={delay} className="reveal-line" initial={{ opacity: 0, y: 8, filter: 'blur(4px)' }} animate={play ? { opacity: 1, y: 0, filter: 'blur(0px)' } : undefined} transition={{ delay, duration: 0.7 }}>{sentence}</motion.span>
     })}</span>)}</p>
 }
 /** Seconds until a RevealText finishes, so a celebration can follow it. */
