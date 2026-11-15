@@ -1,4 +1,4 @@
-export type GiftId = 'letters' | 'memories' | 'reasons' | 'quiz' | 'scratch' | 'promise' | 'unsent' | 'puzzle' | 'who' | 'code' | 'imagine' | 'match' | 'story' | 'questions' | 'treasure' | 'stars'
+export type GiftId = 'letters' | 'memories' | 'reasons' | 'quiz' | 'scratch' | 'promise' | 'unsent' | 'puzzle' | 'who' | 'code' | 'imagine' | 'story' | 'questions' | 'treasure' | 'stars'
 export type Choice = { label: string; reply: string }
 export type LoveStoryConfig = {
   names: { sender: string; recipient: string }
@@ -26,7 +26,6 @@ export const giftMeta: { id: GiftId; title: string; hint: string; emoji: string 
   { id: 'who', title: 'مين فينا؟', hint: 'اختاري إجابتك وشوفي أنا اخترت إيه', emoji: '🤭' },
   { id: 'code', title: 'شفرة بينا', hint: 'حلي ٣ ألغاز وافتحي الرسالة', emoji: '🔐' },
   { id: 'imagine', title: 'لو كنا…', hint: 'اختيارات صغيرة لحكايتنا الكبيرة', emoji: '💭' },
-  { id: 'match', title: 'قلوب وذكريات', hint: 'طابقي الرموز واكتشفي الرسائل', emoji: '🃏' },
   { id: 'story', title: 'حكاية قبل النوم', hint: 'اختاري طريق حكايتنا', emoji: '🌙' },
   { id: 'questions', title: 'سؤال مني وإجابة مني', hint: 'جاوبي وبعدين افتحي إجابتي', emoji: '🫶' },
   { id: 'treasure', title: 'رحلة لجوا قلبي', hint: 'اتبعي الخريطة واجمعي أجزاء الرسالة', emoji: '🗺️' },
