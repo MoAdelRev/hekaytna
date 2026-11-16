@@ -1,9 +1,11 @@
-export type GiftId = 'letters' | 'memories' | 'reasons' | 'quiz' | 'scratch' | 'promise' | 'unsent' | 'who' | 'imagine' | 'questions' | 'treasure' | 'stars'
+export type GiftId = 'letters' | 'memories' | 'reasons' | 'quiz' | 'scratch' | 'promise' | 'who' | 'imagine' | 'questions' | 'treasure' | 'stars'
 export type Choice = { label: string; reply: string }
 export type LoveStoryConfig = {
   names: { sender: string; recipient: string }
   musicSrc?: string
   quizAnswersEmail: string
+  /** رقم واتساب بالصيغة الدولية من غير + أو مسافات (مثال: 201xxxxxxxxx). لو فاضي، واتساب هيطلب اختيار الشات. */
+  whatsappNumber?: string
   letters: { id: string; title: string; emoji: string; body: string; greeting?: string }[]
   reasons: string[]
   memories: { id: string; title: string; caption: string; date?: string; src?: string; thumbnailSrc?: string; alt: string }[]
@@ -21,7 +23,6 @@ export const giftMeta: { id: GiftId; title: string; hint: string; emoji: string 
   { id: 'quiz', title: 'تعرفيني قد إيه؟', hint: 'لعبة صغيرة من غير درجات', emoji: '🎠' },
   { id: 'scratch', title: 'مفاجأة مستخبية', hint: 'سر صغير تحت طبقة دهب', emoji: '✨' },
   { id: 'promise', title: 'وعدنا لبعض', hint: 'وعد مكتوب بقلبي', emoji: '🤝' },
-  { id: 'unsent', title: 'رسايل ما بعتهاش', hint: 'كلام فضل جوا قلبي لحد النهارده', emoji: '💌' },
   { id: 'who', title: 'مين فينا؟', hint: 'اختاري إجابتك وشوفي أنا اخترت إيه', emoji: '🤭' },
   { id: 'imagine', title: 'لو كنا…', hint: 'اختيارات صغيرة لحكايتنا الكبيرة', emoji: '💭' },
   { id: 'questions', title: 'سؤال مني وإجابة مني', hint: 'جاوبي وبعدين افتحي إجابتي', emoji: '🫶' },
@@ -34,6 +35,7 @@ export const story: LoveStoryConfig = {
   // ضيفي ملفك إلى public/assets/music/ واكتبي المسار هنا. سيظهر زر المزيكا تلقائياً.
   musicSrc: undefined,
   quizAnswersEmail: 'm.adeldev10@gmail.com',
+  whatsappNumber: '201064902663',
   letters: [
     { id: 'miss', greeting: 'يا نانوسة، يا اللي وحشتيني،', title: 'لما توحشيني 🥹', emoji: '🥹', body: 'لو وحشتيني، حبيت أسيبلك الرسالة دي. كلامنا في نص اليوم بيبقى من الحاجات اللي بتفرّحني، حتى لو بنتكلم في حاجة عادية جدًا. حبيت أفكرك إني بفكر فيكي، ومستني أكلمك تاني. ❤️' },
     { id: 'sad', greeting: 'تعالي هنا يا قلبي،', title: 'لما تكوني زعلانة 🤍', emoji: '🤍', body: 'عارف إن في أيام بتبقى تقيلة. مش هقولك ماتزعليش؛ بس حبيت أفكرك إني موجود أسمعك وقت ما تحبي. ولو مش حابة تتكلمي دلوقتي، خدي وقتك. بحبك في كل الأحوال.' },

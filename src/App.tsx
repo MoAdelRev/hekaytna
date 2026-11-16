@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, ArrowUpLeft, Check, ChevronLeft, ChevronRight, G
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import type { PointerEvent as ReactPointerEvent } from 'react'
 import { giftMeta, story, type GiftId } from './content'
-import { CloserQuestions, Constellation, ImagineGame, OurTimeline, TreasureMap, UnsentLetters, WhoGame } from './NewChapters'
+import { CloserQuestions, Constellation, ImagineGame, OurTimeline, TreasureMap, WhoGame } from './NewChapters'
 import { HeartBurst, PetalShower, RevealText, Sky, revealDuration } from './effects'
 
 type Progress = { version: 1; entered: boolean; gifts: string[]; letters: string[]; reason: number; answers: Record<string, number[]>; scratched: boolean; finalOpened: boolean }
@@ -215,7 +215,6 @@ function GiftRoute() {
     case 'quiz': return <Quiz />
     case 'scratch': return <ScratchCard />
     case 'promise': return <PromiseChapter />
-    case 'unsent': return <Chapter id="unsent" title="رسايل ما بعتهاش" subtitle="كلام فضل جوا قلبي… ودلوقتي بقى بتاعك." icon={<span>💌</span>}><UnsentLetters /></Chapter>
     case 'who': return <Chapter id="who" title="مين فينا؟" subtitle="اختاري إجابتك وشوفي أنا كنت هختار مين." icon={<span>🤭</span>}><WhoGame /></Chapter>
     case 'imagine': return <Chapter id="imagine" title="لو كنا…" subtitle="اختيارات صغيرة لحكايتنا الكبيرة." icon={<span>💭</span>}><ImagineGame /></Chapter>
     case 'questions': return <Chapter id="questions" title="سؤال مني وإجابة مني" subtitle="جاوبي براحتك، وبعدها افتحي إجابتي." icon={<span>🫶</span>}><CloserQuestions /></Chapter>
